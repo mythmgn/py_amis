@@ -149,7 +149,7 @@ class Table(BaseRender):
     """
     amis table
     """
-    def __init__(self):
+    def __init__(self, **kwargs):
         """
         """
         BaseRender.__init__(
@@ -168,6 +168,9 @@ class Table(BaseRender):
         })
         self._rawdata['data'] = {'items':[]}
         self._rawdata['columns'] = []
+        if kwargs is not None:
+            for key, value in kwargs:
+                self.set_attr(key, value)
 
     def set_title(self, title):
         """
