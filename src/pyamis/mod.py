@@ -169,7 +169,7 @@ class Table(BaseRender):
         self._rawdata['data'] = {'items':[]}
         self._rawdata['columns'] = []
         if kwargs is not None:
-            for key, value in kwargs:
+            for key, value in kwargs.iteritems():
                 self.set_attr(key, value)
 
     def set_title(self, title):
@@ -230,15 +230,13 @@ class Echarts(BaseRender):
     """
     echarts in amis
     """
-    def __init__(self, tabnum=1, **kwargs):
+    def __init__(self, **kwargs):
         BaseRender.__init__(
             self, None,
             'chart'
         )
-        # self._tabnum = tabnum
-        # self._tabs = [{} for _ in range(self._tabnum)]
         if kwargs is not None:
-            for key, value in kwargs:
+            for key, value in kwargs.iteritems():
                 self.set_attr(key, value)
 
     def config(self, jsondict):
@@ -252,7 +250,7 @@ class Tabs(BaseRender):
     """
     amis tabs
     """
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         BaseRender.__init__(
             self, 'https://houtai.baidu.com/v2/schemas/tabs.json#',
             'tabs'
