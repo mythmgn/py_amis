@@ -112,6 +112,7 @@ class BaseRender(object):
         }
         if schema_url is not None:
             self._rawdata['$schema'] = self._schema_url
+        self._msg = ''
 
     def render(self):
         """
@@ -119,7 +120,7 @@ class BaseRender(object):
         """
         renderdict = {
             'status':0,
-            'msg':'',
+            'msg': self._msg,
             'data': self._rawdata
         }
         return renderdict
@@ -143,6 +144,18 @@ class BaseRender(object):
         return jsondict of this component
         """
         return self._rawdata
+
+    def set_msg(self, msg):
+        """
+        :param msg:
+            msg for the return json
+        :exception:
+            raise ValueError if msg is None
+        """
+        if msg is not None:
+            self._msg = msg
+        else:
+            raise ValueError('msg can NOT be None')
 
 
 class Table(BaseRender):
